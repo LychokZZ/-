@@ -1,0 +1,78 @@
+<mxfile userAgent="Mozilla/5.0" version="20.2.6" editor="www.draw.io">
+  <diagram name="СистемаМоніторингу">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Start Node -->
+        <mxCell id="start" value="(*)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="100" y="100" width="40" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- States -->
+        <mxCell id="АктивнаПеревірка" value="АктивнаПеревірка
+OnEntry / запустити_сенсори()
+Do / перевірка_стану()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;" vertex="1" parent="1">
+          <mxGeometry x="200" y="50" width="300" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ЗбірДаних" value="ЗбірДаних
+Do / збирати_показники()
+OnExit / зберегти_дані()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;" vertex="1" parent="1">
+          <mxGeometry x="550" y="50" width="300" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="АналізРизику" value="АналізРизику
+Do / оцінити_небезпеку()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;" vertex="1" parent="1">
+          <mxGeometry x="900" y="50" width="300" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="Попередження" value="Попередження
+надіслати_попередження()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="50" width="250" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="АварійнеРеагування" value="АварійнеРеагування
+Do / виклик_рятувальників()
+OnExit / створити_звіт()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="50" width="300" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="Очікування" value="Очікування" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;" vertex="1" parent="1">
+          <mxGeometry x="900" y="200" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Transitions -->
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="start" target="АктивнаПеревірка">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="перевірка_завершена()" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="АктивнаПеревірка" target="ЗбірДаних">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="дані_готові()" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="ЗбірДаних" target="АналізРизику">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" value="[ризик > 0.8] / надіслати_попередження()" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="АналізРизику" target="Попередження">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" value="[ризик <= 0.8]" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="АналізРизику" target="Очікування">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="підтверджено()" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="Попередження" target="АварійнеРеагування">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" value="подію_закрито()" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="АварійнеРеагування" target="АктивнаПеревірка">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8" value="таймер()" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="Очікування" target="АктивнаПеревірка">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" value="[пакет_неповний] / повторити()" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" edge="1" parent="1" source="ЗбірДаних" target="ЗбірДаних">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
